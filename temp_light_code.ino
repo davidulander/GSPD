@@ -10,16 +10,7 @@ DHT dht(DHTPIN, DHTTYPE);
 Adafruit_SI1145 uv = Adafruit_SI1145();
 
 void setup() {
-  
-  Serial.begin(9600);
-  Serial.println("Temp and Brightness test!");
-  Serial.println();
-
-  dht.begin();
-  
-  if (! uv.begin()) {
-    Serial.println("Didn't find Si1145");
-    while (1);
+  bjas bajs
   }
 }
 
