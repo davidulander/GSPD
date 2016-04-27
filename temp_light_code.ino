@@ -10,16 +10,7 @@ DHT dht(DHTPIN, DHTTYPE);
 Adafruit_SI1145 uv = Adafruit_SI1145();
 
 void setup() {
-  
-  Serial.begin(9600);
-  Serial.println("Temp and Brightness test!");
-  Serial.println();
-
-  dht.begin();
-  
-  if (! uv.begin()) {
-    Serial.println("Didn't find Si1145");
-    while (1);
+  bjas bajs
   }
 }
 
@@ -46,15 +37,4 @@ void loop() {
 
 
   //Light measurement
-  Serial.println("===================");
-  Serial.print("Vis: "); Serial.println(uv.readVisible());
-  Serial.print("IR: "); Serial.println(uv.readIR());
-  
-  float UVindex = uv.readUV();
-  // the index is multiplied by 100 so to get the
-  // integer index, divide by 100!
-  UVindex /= 100.0;  
-  Serial.print("UV: ");  Serial.println(UVindex);
-
-   
- }
+  ijokl,ö
