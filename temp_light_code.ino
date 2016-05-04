@@ -46,15 +46,14 @@ void loop() {
     bluetooth.println("Failed to read from DHT sensor!");
     return;
   }
-  bluetooth.println("===================");
+  //bluetooth.println("===================");
   bluetooth.print("Temperature: ");
-  bluetooth.print(temp);
-  bluetooth.println(" *C ");
+  bluetooth.println(temp);
 
 
 
   //Light measurement
-  bluetooth.println("===================");
+  //bluetooth.println("===================");
   bluetooth.print("Vis: "); bluetooth.println(uv.readVisible());
   bluetooth.print("IR: "); bluetooth.println(uv.readIR());
   
@@ -62,7 +61,7 @@ void loop() {
   // the index is multiplied by 100 so to get the
   // integer index, divide by 100!
   UVindex /= 100.0;  
-  bluetooth.print("UV: ");  bluetooth.println(UVindex);
+  bluetooth.print("UV: "); bluetooth.println(UVindex);
 
    
  }
