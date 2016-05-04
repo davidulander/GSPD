@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 import serial
+import paho.mqtt.client as paho
+
+client = paho.Client()
+client.connect("localhost", 1883)
 
 ser = serial.Serial('/dev/tty.HC-06-DevB',9600)
 
-f = open('buffer.txt','a')
-
 while 1 :
-    f.write(ser.readline())
-    f.close()
-    f = open('buffer.txt','a')
+	client.publish("myfirst/test",ser.readline())
