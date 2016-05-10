@@ -6,18 +6,16 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class Messages {
-	private static Socket outgoing;
-	private static ServerSocket incoming;
-	
-	
-	public static void main(String[] args) throws UnknownHostException, IOException{
-		
-		incoming = new ServerSocket(1884);
-		outgoing = new Socket("169.254.21.49", 5555);
-		Socket s = incoming.accept();
-		DataInputStream in = new DataInputStream(s.getInputStream());
-		DataOutputStream out = new DataOutputStream(outgoing.getOutputStream());
-		out.writeUTF("Hello EV3!");
-		System.out.println(in.readUTF());
-	}	
+    //Declare a new socket for the outgoing data to be sent
+    private static Socket outgoing;
+    
+    public static void main(String[] args) throws UnknownHostException, IOException{
+        
+        //The IP to the robot. This may change over time, so be sure to check if it is correct.
+        //5555 means port number and this port has a socket asigned in the code for the robot.
+        outgoing = new Socket("169.254.21.49", 5555);
+        DataOutputStream out = new DataOutputStream(outgoing.getOutputStream());
+        //message to write, will in future be a command probably
+        out.writeUTF("Hello EV3!");
+    }	
 }
