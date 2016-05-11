@@ -4,18 +4,39 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.io.FileNotFoundException;  
+import java.io.FileReader;  
+import java.io.IOException;  
+import java.util.Iterator;  
+import org.json.simple.JSONArray;  
+import org.json.simple.JSONObject;  
+import org.json.simple.parser.JSONParser;  
+import org.json.simple.parser.ParseException; 
+
 
 public class Messages {
-    //Declare a new socket for the outgoing data to be sent
-    private static Socket outgoing;
-    
-    public static void main(String[] args) throws UnknownHostException, IOException{
-        
-        //The IP to the robot. This may change over time, so be sure to check if it is correct.
-        //5555 means port number and this port has a socket asigned in the code for the robot.
-        outgoing = new Socket("169.254.21.49", 5555);
-        DataOutputStream out = new DataOutputStream(outgoing.getOutputStream());
-        //message to write, will in future be a command probably
-        out.writeUTF("Hello EV3!");
-    }	
+
+	private static Socket outgoing;
+	private static ServerSocket incoming;
+	
+	public static void main(String[] args) throws UnknownHostException, IOException, ParseException{
+		/*outgoing = new Socket("169.254.21.49", 5555);
+		DataOutputStream out = new DataOutputStream(outgoing.getOutputStream());*/
+		
+		incoming = new ServerSocket(1885);
+		Socket s = incoming.accept();
+		DataInputStream in = new DataInputStream(s.getInputStream());
+		String question = in.readUTF();
+		
+		System.out.println(question);
+		 
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse(new FileReader("/Users/jocke/Desktop/GSPD/data.json"));
+		JSONObject jsonObject = (JSONObject) obj;  
+		String temperature = (String) jsonObject.get("Temperature");
+		String uv = (String) jsonObject.get("UV");
+		
+		//out.writeUTF("Temperature: " + temperature + " Light: " + uv);
+		incoming.close();
+	}	
 }
