@@ -9,6 +9,7 @@ import lejos.utility.Delay;
 public class ModeSensor {
 	private EV3UltrasonicSensor modeSonic;
 	private GraphicsLCD display;
+	private int stops = 0;
 	
 	public ModeSensor(Brick ev3) {
 		modeSonic = new EV3UltrasonicSensor(ev3.getPort("S1"));
@@ -29,10 +30,21 @@ public class ModeSensor {
 			Delay.msDelay(1000);
 			display.clear();
 			*/
+			if (sample[0]<0.1f && sample[0]>0.01f) {
+				stops++;
+			}
 			
 		//}	
 		return sample[0];
 	}
+	
+	public int GetStop() {
+		return stops;
+	}
+	public void ResetStop() {
+		stops = 0;
+	}
+	
 	public void ClosePorts() {
 		modeSonic.close();
 	}

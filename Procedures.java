@@ -23,6 +23,8 @@ public class Procedures {
 	}
 	
 	public void PickUpMode(int colorID) {
+		lineFollower.StopMotors();
+		//communication
 		lineFollower.PickUpSpeed();
 		while (!colorMeasure.ColorID(colorID)) {
 			lineFollower.PIDController();
@@ -33,45 +35,46 @@ public class Procedures {
 		lineFollower.TurnRight();
 	}
 	
-	public void NormalMode() {
+	public void DriveMode() {
 		lineFollower.NormalSpeed();
+		float dist = modeScanner.ModeMeasurement();
+		while (!(dist<0.1f && dist>0.01f)) {
+			lineFollower.PIDController();
+			dist = modeScanner.ModeMeasurement();
+		}
+		lineFollower.StopMotors();
+		//communication
 	}
 	
 	public void StoreMode() {
-		lineFollower.StopMotors();
 		lineFollower.TurnLeft();
 		claw.OpenClaw();
 		lineFollower.TurnRight();
 	}
-	public boolean PickUp() {
-		
-		return true;
-	}
 	
+	/*
 	public void Position() {
 		side = 0;
 		if (ultraSonic.DistanceMeasurement() < 0.2f) {
 			side++;
 		}
 	}
-	public boolean Store() {
-		return (ultraSonic.DistanceMeasurement() < 0.3f);
-	}
-	
-	
-	
-	
-	
+	*/
+
 	public void ClosePorts() {
 		lineFollower.ClosePorts();
 		claw.ClosePorts();
 		colorMeasure.ClosePorts();
 		ultraSonic.ClosePorts();
+		modeScanner.ClosePorts();
 	}
 	
 	public static void main(String[] args) {
 		Procedures p = new Procedures();
+		p.DriveMode();
+		p.PickUpMode(0);
 		
+		/*
 		while (p.modeScanner.ModeMeasurement()<0.1f) {
 		 
 			p.lineFollower.PIDController();
