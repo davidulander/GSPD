@@ -3,6 +3,7 @@ import lejos.hardware.BrickFinder;
 import lejos.hardware.Button;
 import lejos.hardware.lcd.GraphicsLCD;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
+import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
@@ -12,23 +13,34 @@ public class LineFollower {
 	private EV3LargeRegulatedMotor motorC;
 	private EV3ColorSensor lineSensor;
 	private GraphicsLCD display;
-	
 
 	
-	public LineFollower() {
-		Brick ev3 = BrickFinder.getDefault();
+	int tp = 200;					//tunable!! targeted motor speed
+	float offset = 5;				//value read at the edge
+	//float Pc = 0.015f;
+	//float dT = 0.3f;
+	float Kp = 11; 						//tunable!! initial estimate
+	float Ki = 0.8f;					//tunable!! 1
+	float Kd = 80;						//tunable!! 80 KpPc / (8dT)
+	float integral = 0;
+	float derivative = 0;
+	float lastError = 0;
+	
+
+	public LineFollower(Brick ev3) {
 		motorB = new EV3LargeRegulatedMotor(ev3.getPort("B"));
 		motorC = new EV3LargeRegulatedMotor(ev3.getPort("C"));
 		lineSensor = new EV3ColorSensor(ev3.getPort("S4"));
+		/*
+		claw = new Claw(ev3);
+		colorMeasure = new ColorMeasurement(ev3);
+		ultraSonic = new DistanceSensor(ev3);
+		*/
 		
 		//initiate the display
 		display = ev3.getGraphicsLCD();
 	}
-	//not finished
-	//method for measuring the brightness of the edge of the black line
-	//white = 0.12 and black = 0.02 the edge (half white half black) = 0.05
-	//if we measures the right side of the line. An increasing value should
-	//steer the robot to the right and vice versa.
+	
 	public float LineMeasurement() {
 		
 		SampleProvider blackLineSensor = lineSensor.getAmbientMode();
@@ -54,20 +66,9 @@ public class LineFollower {
 		return lightValue;
 	}
 	
-	
-	
 	public void PIDController() {
-		int tp = 200;					//tunable!! targeted motor speed
-		float offset = 5;				//value read at the edge
-		float Kp = 10; 					//tunable!! initial estimate
-		float Ki = 1;					//tunable!! 
-		float Kd = 80;					//tunable!!
-		float integral = 0;
-		float derivative = 0;
-		float lastError = 0;
-				
-		while (!Button.ESCAPE.isDown()) {
-			display.drawString("Escape to exit!", 0, 40, GraphicsLCD.VCENTER |
+		//while (!Button.ESCAPE.isDown()) {
+		display.drawString("Escape to exit!", 0, 40, GraphicsLCD.VCENTER |
 					GraphicsLCD.LEFT);
 			
 			float lightValue = LineMeasurement();
@@ -90,11 +91,31 @@ public class LineFollower {
 				motorB.forward();
 				motorC.forward();
 			}
+			
 			lastError = error;
-		}
-
+		//}
 	}
 	
+	public void PickUpSpeed() {
+		this.tp = 100;
+	}
+	
+	public void NormalSpeed() {
+		this.tp = 200;
+	}
+	
+	public void StopMotors() {
+		motorB.stop(true);
+		motorC.stop(true);
+	}
+	
+	public void TurnLeft() {
+		motorC.rotate(400);
+	}
+	
+	public void TurnRight() {
+		motorC.rotate(-400);
+	}
 	
 	// all opened ports need to be closed!
 	public void ClosePorts() {
@@ -102,14 +123,25 @@ public class LineFollower {
 		motorC.close();
 		lineSensor.close();
 	}
-	
+	/*
 	public static void main(String[] args) {
 		LineFollower test = new LineFollower();
-		//test.LineMeasurement();
+		//test.PIDController();
 		//Delay.msDelay(3000);
-		test.PIDController();
-		test.ClosePorts();
-		
-	}
+		/*
+		while (test.ultraSonic.DistanceMeasurement()>0.2f) {
+			test.PIDController();
+		}
+		test.StopMotors();
+		*/
+		/*
+		 while (!test.colorMeasure.ColorID(7)) {
+			test.PIDController();
+		}
+		*/
+		//test.claw.OpenClaw();
+		//test.claw.CloseClaw();
+		//test.ClosePorts();
+	//}
 
 }
