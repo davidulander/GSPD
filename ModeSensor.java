@@ -1,4 +1,5 @@
 import lejos.hardware.Brick;
+import lejos.hardware.BrickFinder;
 import lejos.hardware.Button;
 import lejos.hardware.lcd.GraphicsLCD;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
@@ -30,7 +31,7 @@ public class ModeSensor {
 			Delay.msDelay(1000);
 			display.clear();
 			*/
-			if (sample[0]<0.1f && sample[0]>0.01f) {
+			if (sample[0]<0.08f && sample[0]>0.001f) {
 				stops++;
 			}
 			
@@ -48,4 +49,12 @@ public class ModeSensor {
 	public void ClosePorts() {
 		modeSonic.close();
 	}
+	
+	
+	public static void main(String[] args) {
+		ModeSensor ds = new ModeSensor(BrickFinder.getDefault());
+		ds.ModeMeasurement();
+		ds.ClosePorts();
+	}
+	
 }

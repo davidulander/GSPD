@@ -16,12 +16,12 @@ public class LineFollower {
 
 	
 	int tp = 200;					//tunable!! targeted motor speed
-	float offset = 5;				//value read at the edge
+	float offset = 96;				//value read at the edge
 	//float Pc = 0.015f;
 	//float dT = 0.3f;
-	float Kp = 11; 						//tunable!! initial estimate
-	float Ki = 0.8f;					//tunable!! 1
-	float Kd = 80;						//tunable!! 80 KpPc / (8dT)
+	float Kp = 0.65f; 						//tunable!! initial estimate 11
+	float Ki = 0.02f;					//tunable!! 0.8 
+	float Kd = 1;						//tunable!! 80 KpPc / (8dT)
 	float integral = 0;
 	float derivative = 0;
 	float lastError = 0;
@@ -46,24 +46,30 @@ public class LineFollower {
 		SampleProvider blackLineSensor = lineSensor.getAmbientMode();
 		int sampleSize = blackLineSensor.sampleSize();            
 		float[] sample = new float[sampleSize];
-		
+		/*while (!Button.ESCAPE.isDown()) {
+			display.drawString("Escape to exit!", 0, 40, GraphicsLCD.VCENTER |
+						GraphicsLCD.LEFT);
+	*/
+			
 		blackLineSensor.fetchSample(sample, 0);
-		float lightValue = sample[0]*100-2;
-		
-		if (lightValue > 10) {
-			lightValue = 10;
-		} else if (lightValue < 0) {
-			lightValue = 0;
+		float lightValue = 40*sample[0]*100;
+		/*
+		if (lightValue > 300) {
+			lightValue = 300;
+		} else if (lightValue < 50) {
+			lightValue = 50;
 		}
-		/* 
-		uncomment to see the light values on the display
+		*/
+		/*
+		//uncomment to see the light values on the display
 		String sampleString = "value " + ": " + lightValue;
 		display.drawString(sampleString, 0, 0, GraphicsLCD.VCENTER | GraphicsLCD.LEFT);
 		display.drawString("Escape to exit!", 0, 40, GraphicsLCD.VCENTER | GraphicsLCD.LEFT);
 		Delay.msDelay(1000);
 		display.clear();
-		*/		
+		*/
 		return lightValue;
+		
 	}
 	
 	public void PIDController() {
@@ -79,7 +85,7 @@ public class LineFollower {
 				integral = 0;
 			}
 			
-			integral = (3/4)*integral + error;
+			integral = (0.5f)*integral + error;
 			derivative = error - lastError;
 			float turn = Kp*error + Ki*integral + Kd*derivative;
 			float powerB = tp + turn;
@@ -97,7 +103,7 @@ public class LineFollower {
 	}
 	
 	public void PickUpSpeed() {
-		this.tp = 100;
+		this.tp = 150;
 	}
 	
 	public void NormalSpeed() {
@@ -109,12 +115,48 @@ public class LineFollower {
 		motorC.stop(true);
 	}
 	
-	public void TurnLeft() {
-		motorC.rotate(400);
+	public void LeftPickUp() {
+		//motorB.rotate(50);
+		motorB.setSpeed(150);
+		motorC.setSpeed(120);
+		
+		motorC.rotate(-50, true);
+		motorB.rotate(-250);
+		//motorC.rotate(-100);
+		Delay.msDelay(1000);
+		/*
+		motorB.backward();
+		motorC.backward();
+		Delay.msDelay(900);
+		motorC.rotate(-100);
+		*/
+		motorB.setSpeed(160);
+		motorC.setSpeed(180);
+		motorB.forward();
+		motorC.forward();
+		
+		Delay.msDelay(900);
+		motorB.stop(true);
+		motorC.stop(true);
 	}
 	
+	public void LeftStore() {
+		motorC.rotate(370);
+	}
+	
+	public void Backward() {
+		motorB.setSpeed(100);
+		motorC.setSpeed(300);
+		motorB.backward();
+		motorC.backward();
+		
+		Delay.msDelay(900);
+		motorB.stop(true);
+		motorC.stop(true);
+	}
 	public void TurnRight() {
-		motorC.rotate(-400);
+		motorC.rotate(-610,true);
+		motorB.rotate(-100);
 	}
 	
 	// all opened ports need to be closed!
@@ -125,8 +167,8 @@ public class LineFollower {
 	}
 	/*
 	public static void main(String[] args) {
-		LineFollower test = new LineFollower();
-		//test.PIDController();
+		LineFollower test = new LineFollower(BrickFinder.getDefault());
+		test.LineMeasurement();
 		//Delay.msDelay(3000);
 		/*
 		while (test.ultraSonic.DistanceMeasurement()>0.2f) {
@@ -143,5 +185,6 @@ public class LineFollower {
 		//test.claw.CloseClaw();
 		//test.ClosePorts();
 	//}
+
 
 }

@@ -1,7 +1,9 @@
 import lejos.hardware.Brick;
 import lejos.hardware.BrickFinder;
+import lejos.hardware.Button;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.sensor.EV3ColorSensor;
+import lejos.utility.Delay;
 
 public class Procedures {
 	private ColorMeasurement colorMeasure;
@@ -9,7 +11,8 @@ public class Procedures {
 	private Claw claw;
 	private LineFollower lineFollower;
 	private ModeSensor modeScanner;
-	private int side;
+	private int side = 0;
+	private boolean pickUp = false;
 	
 	public Procedures() {
 		Brick ev3 = BrickFinder.getDefault();
@@ -18,36 +21,77 @@ public class Procedures {
 		colorMeasure = new ColorMeasurement(ev3);
 		ultraSonic = new DistanceSensor(ev3);
 		modeScanner = new ModeSensor(ev3);
+		Communication com = new Communication();
 		//initiate the display
 		//display = ev3.getGraphicsLCD();
+	}
+	public boolean PickUp() {
+		/*
+		boolean isGreen = colorMeasure.ColorID(1);
+		if (isGreen && !pickUp) {
+			pickUp = !pickUp;
+			return pickUp;
+		} else if (isGreen && pickUp) {
+			pickUp = !pickUp;
+			return pickUp;
+		} else {
+			return pickUp;
+		}
+		*/
+		
+		
+		boolean isGreen = colorMeasure.ColorID(1);
+		if (isGreen) {
+			return false;
+		} else {
+			return true;
+		}
+		
 	}
 	
 	public void PickUpMode(int colorID) {
 		lineFollower.StopMotors();
+		side = 0;
 		//communication
 		lineFollower.PickUpSpeed();
 		while (!colorMeasure.ColorID(colorID)) {
 			lineFollower.PIDController();
 		}
 		lineFollower.StopMotors();
-		lineFollower.TurnLeft();
-		claw.OpenClaw();
-		lineFollower.TurnRight();
+		lineFollower.LeftPickUp();
+		claw.CloseClaw();
+		Delay.msDelay(100);
+		lineFollower.Backward();
+		while (PickUp()) {
+			lineFollower.PIDController();
+		}
+		//modeScanner.ResetStop();
+		//claw.OpenClaw();
+		//Delay.msDelay(2000);
 	}
 	
-	public void DriveMode() {
+	public void DriveMode0() {
+		lineFollower.NormalSpeed();
+		for (int i = 0; i < 1700; i++) {
+			lineFollower.PIDController();
+		}
+	}
+	public void DriveMode1() {
 		lineFollower.NormalSpeed();
 		float dist = modeScanner.ModeMeasurement();
-		while (!(dist<0.1f && dist>0.01f)) {
+		while (!(dist<0.08f && dist>0.001f)) {
 			lineFollower.PIDController();
 			dist = modeScanner.ModeMeasurement();
+			side++;
 		}
 		lineFollower.StopMotors();
-		//communication
+		//wait for communication
+		Delay.msDelay(2000);
 	}
 	
-	public void StoreMode() {
-		lineFollower.TurnLeft();
+	
+	public void StoreMode() {	
+		lineFollower.LeftStore();
 		claw.OpenClaw();
 		lineFollower.TurnRight();
 	}
@@ -71,9 +115,26 @@ public class Procedures {
 	
 	public static void main(String[] args) {
 		Procedures p = new Procedures();
-		p.DriveMode();
-		p.PickUpMode(0);
+		//while (!Button.ESCAPE.isDown()) {
 		
+		p.PickUpMode(0);
+		for (int i=0; i < 4; i++) {
+			p.DriveMode0();
+			p.DriveMode1();
+			
+		}
+		
+		p.StoreMode();
+		p.DriveMode0();
+		p.ClosePorts();
+		 
+		/*
+		p.PickUpMode(3);
+		
+		p.DriveMode0();
+		p.StoreMode();
+		p.ClosePorts();
+		*/
 		/*
 		while (p.modeScanner.ModeMeasurement()<0.1f) {
 		 
