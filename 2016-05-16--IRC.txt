@@ -1,0 +1,348 @@
+Status ##group3UUX
+##group3UU: (no topic set)
+[14:15] == Web-Henke [82eef516@gateway/web/freenode/ip.130.238.245.22] has joined ##group3UU
+[14:16] <Web-Henke> Hi IRC-guys!
+[14:16] <Hex-Henke> Yeah hello to you too, Web-Henke! :-)
+[14:52] <Web-Henke> Hi Adriana!
+[14:53] <Hex-Henke> Yes, hi Adi, and welcome!
+[14:54] <Hex-Henke> David is here as well.
+[14:54] <Web-Henke> Yes, he will probably join in just a minute ...
+[14:57] == DavidUlander [~david@student246-10.eduroam.uu.se] has joined ##group3UU
+[14:58] == Joakim_Nilsson [82ee5e89@gateway/web/freenode/ip.130.238.94.137] has quit [Quit: Page closed]
+[14:59] <AdrianaD_> hi
+[14:59] == Joakim_Nilsson [82ee5e89@gateway/web/freenode/ip.130.238.94.137] has joined ##group3UU
+[15:00] <Web-Henke> Paul will join as soon as his lecture has finished.
+[15:00] <AdrianaD_> ok
+[15:00] <Hex-Henke> Yes, he said so.
+[15:00] <Web-Henke> He is her now!
+[15:00] <Hex-Henke> OK!
+[15:07] == Anne_ [82ee0ef9@gateway/web/freenode/ip.130.238.14.249] has joined ##group3UU
+[15:07] <AdrianaD_> and Anne?
+[15:07] <Joakim_Nilsson> Hi Anne
+[15:07] <Anne_> Hello! I am sorry for being late
+[15:07] <Joakim_Nilsson> No problem
+[15:07] <AdrianaD_> hi
+[15:07] <juho_> hi
+[15:07] <DavidUlander> Hi
+[15:08] <Joakim_Nilsson> Henrik is currently helping Paul to join the chat
+[15:08] <Anne_> Have suddenly gotten into some interesting research thoughts and forgotten everything else...
+[15:08] <AdrianaD_> okok
+[15:08] <Anne_> Sorry
+[15:08] <AdrianaD_> np
+[15:08] <AdrianaD_> :)
+[15:09] <Joakim_Nilsson> Okay, we can start then maybe. Paul will join in just a sec
+[15:09] <Joakim_Nilsson> He is in the same room as us, so he does not miss anything
+[15:09] <Anne_> :-) Ok.
+[15:10] == Paul26_ [82f3b064@gateway/web/freenode/ip.130.243.176.100] has joined ##group3UU
+[15:10] <Joakim_Nilsson> I have sent out the agenda https://docs.google.com/document/d/1qrixOqXxVRfwR_OHQ_n3YDgWJY6u37C-jMNdZrGhYGU/edit for today, but I link it again in case someone has not seen it
+[15:10] <Web-Henke> We will help Paul with the transcript afterwards!
+[15:10] <AdrianaD_> hi Paul
+[15:10] <Joakim_Nilsson> So to begin with,  what we have done since the last meeting. We have done a lot actually
+[15:10] <Paul26_> Hi Adriana
+[15:11] <Anne_> Can someone take some notes anyway and include them in the report?
+[15:11] <Anne_> As a summary?
+[15:11] <Web-Henke> Paul wil do that.
+[15:11] <Anne_> Good
+[15:12] <Hex-Henke> Yes he has agreed to do so.
+[15:12] <Joakim_Nilsson> We have started with the implementation and we have come a long way with it. The robot is able to communicate with the server and can grab objects in the modelled environment and store them where they should be right now. We still need to make it better, but it works
+[15:13] <AdrianaD_> yes and we have done that environment acoording to the specifications
+[15:13] <AdrianaD_> that has changed of course
+[15:13] <Web-Henke> Yeah, quite a lot of changes.
+[15:14] <AdrianaD_> yes
+[15:14] <Anne_> Yes, I have seen that in the report.
+[15:14] <Joakim_Nilsson> Great :)
+[15:14] <AdrianaD_> and we have improved objects also
+[15:14] <Anne_> You have described the contributions of most of the team members.
+[15:14] <AdrianaD_> yes
+[15:15] <Anne_> But 2 were missing - do the two want to tell us what you have been doing?
+[15:15] <Hex-Henke> I think Pauls needs to write down his contributions as soon as this meeting is over.
+[15:15] <AdrianaD_> we are all involved in everything but others know more about the programming, others the server, but we are trying to learn as much as we can a bit about everything
+[15:15] <Hex-Henke> Adriana wrote her contributions today.
+[15:15] <Paul26_> I will do that, after this meeting.
+[15:15] <AdrianaD_> yes
+[15:16] <AdrianaD_> i have wrote them today in the morning, it is there
+[15:16] <Anne_> Yes, missed that, but read it now.
+[15:16] <AdrianaD_> okok
+[15:16] <Anne_> Paul, what have you been up for?
+[15:16] <AdrianaD_> thanks
+[15:17] <Anne_> Looked like you divide your work a bit according to your system structure: robot - server - client!?
+[15:18] <Anne_> Joakim has mainly worked with the server!?
+[15:18] <Joakim_Nilsson> Yeah that is correct
+[15:18] <Anne_> Juho with the client
+[15:18] <juho_> that's true
+[15:18] <Joakim_Nilsson> David the robot
+[15:18] <Hex-Henke> I happen to know that Paul draw the excellent graph in Figure 1.
+[15:18] <Paul26_> I have done the graphic for the document, search for video screaming among others.
+[15:18] <AdrianaD_> yes
+[15:19] <DavidUlander> Yes, that's right
+[15:19] <AdrianaD_> Paul helped me to build the environment too
+[15:19] <Paul26_> The creating and building of the design environment to meeting the needed changes
+[15:19] <Anne_> Ah Paul, so you will work with the video streaming?
+[15:19] <Anne_> Adriana, you will work with the sensors?
+[15:19] <Paul26_> yes
+[15:19] <AdrianaD_> yes
+[15:20] <Anne_> How about sensor - server communication, is that working?
+[15:20] <DavidUlander> The sensors are already working and implemented :)
+[15:20] <Joakim_Nilsson> Yeah, all communication to server is working
+[15:20] <AdrianaD_> i just tried them with the robot and the environment
+[15:20] <AdrianaD_> but the communit
+[15:20] <AdrianaD_> communications is working
+[15:20] <Anne_> Good
+[15:20] <Joakim_Nilsson> Alll communication on the server and between all components is working
+[15:21] <Anne_> What are the next bits?
+[15:21] <Hex-Henke> Video streaming, I guess ...
+[15:21] <Web-Henke> I have been asked to help Paul with the video streaming.
+[15:21] <DavidUlander> to integrate the communication with the robots operation
+[15:21] <DavidUlander> we are working on that right now
+[15:21] <Anne_> What do you mean?
+[15:21] <Joakim_Nilsson> For me, the next bit will be to handle the data correctly at the server. Sending correct data to where it should be, mainly between robot and server
+[15:22] <Anne_> You have decided to use an alternative to a database
+[15:22] <Anne_> !?
+[15:22] <Web-Henke> Hooking up the client with the server, I suppose. Joakim and I tried that today, and it seems to work.
+[15:23] <Anne_> How far have you come with the client?
+[15:23] <juho_> far
+[15:23] <Joakim_Nilsson> Well, we don't have a database anymore. The data that needs to be stored is stored in JSON files.
+[15:23] <Web-Henke> The client has a jar file which corresponds to the actual client.
+[15:24] <AdrianaD_> yes, that database were unnecessary because all the table we not connected
+[15:24] <AdrianaD_> and we did not need it
+[15:24] <DavidUlander> I mean, the communication works but it is not completely integrated the robots driving. Some actions like, if the storage location is right or wrong is still hardcoded in the robot, instead of cumminicated with the server
+[15:24] <juho_> the client is quite ready. Communication and video capture works. Only need to test against the actual implementation.
+[15:24] <Joakim_Nilsson> Yes, I will work with that from today juho :)
+[15:24] <Hex-Henke> Yes, the client has another jar file for testing the client.
+[15:24] <juho_> Great :)
+[15:25] <Anne_> Is it possible to see the map yet?
+[15:25] <Anne_> What are you storing in these JSON files?
+[15:26] <juho_> The map is already there, a 10*10 location matrix
+[15:26] <Web-Henke> The client GUI looks like this: http://prntscr.com/b4oxia
+[15:27] <Joakim_Nilsson> The data stored in the JSON files are data which is not real time data. It is reference data for the application running on the server to check if the robot is at the correct poistion. So temperature and brightness reference values. Also, product information is stored there, the priority of storing a specific product
+[15:27] <Anne_> About the changes:
+[15:28] <juho_> I just noticed I typoed location on the button label :D
+[15:28] <Web-Henke> So guys, here is my effort to answer Anne's question about the database. The database actually consists of a number JSON files, right?
+[15:28] <Anne_> I had difficulties understanding how you do now - the robots always go on the same path?
+[15:29] <Anne_> In a circle!?
+[15:29] <Paul26_> We did a lot of changes and
+[15:29] <Hex-Henke> That's right!
+[15:29] <DavidUlander> yes that's right!
+[15:29] <Paul26_> Yes.
+[15:29] <Anne_> Why?
+[15:29] <Hex-Henke> Because it's simple!
+[15:29] <DavidUlander> and it will ask the server, based in the temperature and brightness values, if it is at the correct location
+[15:30] <Paul26_> its simple and can access all location in like manner
+[15:30] <Web-Henke> Yes, David and I came up with that design before he went to Berlin.
+[15:30] <Anne_> So you measure at every location?
+[15:30] <DavidUlander> yes until the right location is found
+[15:30] <Web-Henke> Yes, every location.
+[15:30] <Anne_> But then, why do you need to check with the server?
+[15:31] <Hex-Henke> Because the robot is stupid.
+[15:31] <Anne_> But then the server could just tell the robot where to go?
+[15:31] <Web-Henke> Yes, the robot just does what the server tells it to do.
+[15:31] <Joakim_Nilsson> Yeah, that's true.
+[15:31] <Paul26_> We never wanted the robot to have much intelligence
+[15:31] <AdrianaD_> haha
+[15:31] <AdrianaD_> that is not tru Paul xD
+[15:32] <Joakim_Nilsson> We could tell the robot where to go. We could just use the sensors for the client
+[15:32] <Joakim_Nilsson> And skip the whole check if it is in the correct location
+[15:32] <AdrianaD_> yes that is right Joakim
+[15:32] <Anne_> Yes Joakim, that is what I am thinking
+[15:32] <Joakim_Nilsson> Would that be good enough?
+[15:32] <Anne_> You shouldn't be doing anything just for the sake of it
+[15:32] <Joakim_Nilsson> To only use sensors to visualise the temperature and light for the client
+[15:32] <Joakim_Nilsson> Okay
+[15:33] <Joakim_Nilsson> Okay, then we have done more progress than we thought
+[15:33] <Anne_> It just makes it hard to understand for others (why might think that they have not understood)
+[15:33] <Joakim_Nilsson> Yeah that's true, good to get some input on it :)
+[15:33] <Anne_> who might
+[15:33] <Joakim_Nilsson> Okay, we also agree with you Anne
+[15:35] <Hex-Henke> David and Joakim are discussing vividly in Swedish right now. That explains the "radio solence".
+[15:35] <Anne_> But a question is why you always follow that path - it takes quite some time
+[15:35] <Web-Henke> You mean *silence*.
+[15:35] <AdrianaD_> they do that all the time
+[15:35] <AdrianaD_> very good
+[15:36] <Anne_> One could imagine that you can come up with a smarter solution
+[15:36] <Anne_> or?
+[15:36] <Web-Henke> I would say we follow the path because it makes the design simple.
+[15:36] <AdrianaD_> i thought to follow 4 different path for each environment but They decided to change it
+[15:36] <Joakim_Nilsson> Yes Anne
+[15:37] <Anne_> Well, you can decide what you spend your time on.
+[15:38] <Hex-Henke> It's like Web-Henke wrote above: David and I came up with that design before he went to Berlin.
+[15:38] <AdrianaD_> yes
+[15:39] <Web-Henke>  We think it's easy if the stupid robot just follows a line (all the time).
+[15:39] <Anne_> It is ok to say - we did that because it was easier. And perhaps you decide to put emphasis (time) on something else instead.
+[15:39] <Anne_> In the end, you should "sell" us your solution
+[15:39] <Joakim_Nilsson> Yeah
+[15:39] <AdrianaD_> yes, i agree
+[15:39] <AdrianaD_> we will fix it
+[15:39] <Joakim_Nilsson> I mean we have the color scanner of the products which is quite cool
+[15:39] <AdrianaD_> yes
+[15:39] <Joakim_Nilsson> I think we will stick with the circle
+[15:40] <Anne_> One criterium for us in the end will be "sophistication"...
+[15:40] <Joakim_Nilsson> Yeah
+[15:40] <Anne_> How will the two robots communicate?
+[15:40] <Hex-Henke> We have only one robot.
+[15:41] <Hex-Henke> (Or we have two, but only one of them has a micro-SD card.)
+[15:41] <AdrianaD_> no
+[15:41] <DavidUlander> So far we have focused on one. If we get that one to work sucessfully we'll tey to add a second one
+[15:41] <AdrianaD_> the 2 of them has it
+[15:41] <AdrianaD_> i have installed in one of them and David did it with the other one
+[15:41] <Web-Henke> To be more correct the other robot has an SD card of ½GB.
+[15:41] <AdrianaD_> 16GB
+[15:42] <AdrianaD_> mine
+[15:42] <Joakim_Nilsson> Both robots runs leJos, so yeah we could do it.
+[15:42] <Web-Henke> 475 MB.
+[15:42] <Joakim_Nilsson> The server would be able to communicate with two robots
+[15:42] <AdrianaD_> my micro SD has 16 GB :D
+[15:42] <Anne_> Ok. I also think it is a good idea to priotise on a smaller system and then to have some "stories" or whatever you want to call it, on how to extend your system to make it more sophisticated
+[15:42] <Joakim_Nilsson> Okay  I understand how you mean
+[15:42] <Joakim_Nilsson> I agree
+[15:42] <AdrianaD_> so, should we build a similar robot?, i can do that this week
+[15:43] <Joakim_Nilsson> It is not necessary
+[15:44] <Web-Henke> Adriana, in that case we have to ask Karl Marklund for two more colour sensors.
+[15:44] <Joakim_Nilsson> We could stick with our solution riight now and make it work as we want to
+[15:44] <AdrianaD_> yes, that is true
+[15:44] <Anne_> Are there any other changes you want to tell me about or am I informed if I read your documents?
+[15:44] <Joakim_Nilsson> But as long as we think about how we could solve it with another one
+[15:44] <DavidUlander> yeah the document reflect our changes well
+[15:45] <Hex-Henke> Hopefully you will be informed by reading the design document.
+[15:45] <Joakim_Nilsson> No I don't think there are any more right now Anne
+[15:45] <AdrianaD_> i was in team 4, where are our lego EV3? we should get 2 boxes and as we never came ans ask for them, then those should be available
+[15:45] <Anne_> Ok. You said that you only do 2D now - why? Simplicity? :-)
+[15:45] <AdrianaD_> testing
+[15:45] <Joakim_Nilsson> I don't think we will have enough time for that
+[15:46] <Anne_> I have distributed team 4 material over the other teams.
+[15:46] <Joakim_Nilsson> Actually
+[15:46] <Web-Henke> I think so too, but the devil is in the detail, so we might have missed some detail somewhere ...
+[15:46] <Anne_> Ok, what about the color code, I was wondering. You said "pre-programmed". What do you mean?
+[15:46] <Web-Henke> Anne, that is not the case. The other kits have been collected by Karl Marklund.
+[15:47] <Anne_> Ok, well, yes, maybe - I was only thinking of the sensor material.
+[15:47] <Hex-Henke> (At least we hope Karl took the kits back, and not somebody else. :/)
+[15:47] <Anne_> Yes, so you can ask Karl for more robot hw, that is true
+[15:48] <AdrianaD_> yes
+[15:48] <Anne_> I did not understand your scanning procedure
+[15:48] <Web-Henke> (But in any case we have only one more SD card.)
+[15:49] <Joakim_Nilsson> Anne, the priority of the products is in the JSON file. The Java application will then from the priority of the product in the JSON file send out a number, which will correspond to the number the color sensor meassures.
+[15:49] <DavidUlander> the robot is now hardcoded with which product to pick up, i.e the red one. but this information should later come from the server, via bluetooth. The color codes are integers, so the server will basically send an int to the robot, to show which product to pick up
+[15:50] <DavidUlander> the color sensor measures red as "0", green as "1" etc
+[15:51] <Joakim_Nilsson> So we have, from testing, seen what the numbers will be when for a specific color, then we have added that in to the code running on the server. All the robot does is asking which product to pick up, the server decides from priority which it should take.
+[15:51] <Anne_> Ok, so the JSON file might say that the robot should pick up item 1 first, which may correspond to a red color. So then the robot scans the products one by one, searching for a red package. And if there is none, it would receive the next color code?
+[15:52] <Hex-Henke> (David is writing an answer.)
+[15:52] <DavidUlander> the JSON file will be up to date and represent the real product line. so that case can't happen
+[15:52] <Anne_> Ok
+[15:52] <DavidUlander> but otherwise it works the way you described :)
+[15:53] <Anne_> And the client can somehow change that!?
+[15:53] <Joakim_Nilsson> That is also something we would do if we would have more time, which we can add to a "future part"
+[15:53] <Joakim_Nilsson> Yes
+[15:53] <Web-Henke> We might need to improve the explanation in the design document.
+[15:53] <Anne_> Ok.
+[15:53] <Joakim_Nilsson> The client sends a command to the MQTT broker, the application will then recieve the command and change the order
+[15:53] <Anne_> Alright, I don't have any more questions then. Just something rel quick that I would like to talk to you about.
+[15:54] <Joakim_Nilsson> Okay :)
+[15:54] <Anne_> Have you seen the news on redmine?
+[15:54] <Joakim_Nilsson> yes
+[15:54] <Web-Henke> Yes!
+[15:54] <juho_> no
+[15:54] <juho_> I need to go check right away
+[15:55] <Anne_> Good - I also sent a mail, but thinking about it, I think, I only reached the Swedish students
+[15:55] <Hex-Henke> Juho: https://runestone.it.uu.se/projects/int-mjukvarautveckling-2016-0/news
+[15:56] <juho_> thanks
+[15:56] <Anne_> I will inform the other finish students as well, so that no one misses this
+[15:56] <Anne_> But I think, you should
+[15:56] <Joakim_Nilsson> Yeah, but we talked about it real quick before. It should not be any problems
+[15:56] <Joakim_Nilsson> I think we will have to update our design document according to what we discussed here today
+[15:56] <Anne_> Good. See this as an opportunity
+[15:56] <Anne_> ;-)
+[15:56] <Joakim_Nilsson> To make everything more clear
+[15:57] <Anne_> Yes, and then to learn from the feedback you get.
+[15:57] <Joakim_Nilsson> Of course!
+[15:57] <DavidUlander> yes, we will do that!
+[15:58] <Anne_> Alright. Thank you for your comments "issues" in the report. I will talk to Arnold about the SD card.
+[15:59] <Joakim_Nilsson> Nice
+[15:59] <AdrianaD_> thanks
+[15:59] <Joakim_Nilsson> Did you have any other questions? :)
+[15:59] <Anne_> About the color sensors: I think, we cannot do so much about that. It is something you could take up in the final presentation
+[16:00] <DavidUlander> yeah, we understand that :)
+[16:00] <Anne_> That is a good advice: Start collecting issues and how you solved them (about implementation, but also planning, and team work)
+[16:00] <Anne_> For the final presentation
+[16:00] <Joakim_Nilsson> Yeah, we will!
+[16:01] <Anne_> You shouldn't just present the final presentation but also the process and what you learned along the way
+[16:01] <AdrianaD_> dookok
+[16:01] <Hex-Henke> "final presentation" = Milestone Meeting 4 ?
+[16:01] <Anne_> good
+[16:01] <Anne_> no Henrik
+[16:01] <DavidUlander> How will the presentation be? a normal ppt presentation, or more like testing our robot?
+[16:01] <Anne_> We will have one more milestone meeting like this (nr 4) and then there will be the final presentation
+[16:01] <Anne_> Both David
+[16:01] <Joakim_Nilsson> Nice
+[16:01] <DavidUlander> Got it!
+[16:01] <Joakim_Nilsson> When is it scheduled to be?
+[16:02] <Anne_> Usually we start with a ppt presentation
+[16:02] <Anne_> of all groups
+[16:02] <Joakim_Nilsson> We can't see anything about it in our schedules
+[16:02] <Anne_> and then we test the robots
+[16:02] <Joakim_Nilsson> Okay, sounds good
+[16:02] <Hex-Henke> Sorry, but there is no "final presentation" in my schedule. I would have to check if it has been added in TimeEdit ...
+[16:02] <Anne_> I think Arnold talked to you about doing it on the 2nd or 3rd of June
+[16:03] <AdrianaD_> no
+[16:03] <AdrianaD_> i will not be here
+[16:03] <AdrianaD_> i have to be in Norway
+[16:03] <AdrianaD_> :(
+[16:03] <Anne_> But Ludwing send me a mail today, asking if it is possible to do it on the 6th.
+[16:03] <Joakim_Nilsson> 2nd of June could be difficult for me
+[16:03] <Anne_> Adriana, what about the 6th?
+[16:03] <Anne_> Joakim?
+[16:03] <Joakim_Nilsson> I could do it the 3rd
+[16:03] <AdrianaD_> no i will be here at 8th :S
+[16:03] <AdrianaD_> and before that?
+[16:03] <Hex-Henke> On the hole Swedish National Day!?!
+[16:04] <Hex-Henke> On the holy Swedish National Day!?!
+[16:04] <Anne_> Yes, right Henrik - to non-swedes planning...
+[16:04] <Anne_> two
+[16:04] <DavidUlander> what about the 2nd?
+[16:05] <Anne_> Adriana, when are you here?
+[16:05] <Hex-Henke> David has signed a document saying he will return the robots no later than the 3rd.
+[16:05] <Joakim_Nilsson> I have final presentation in User Interface Programming the 2nd, maybe it can take the whole day
+[16:05] <Anne_> But this is weird, Arnold should have talked to you about it!?
+[16:05] <Joakim_Nilsson> No
+[16:05] <Joakim_Nilsson> I haven't heard anything about it
+[16:06] <DavidUlander> me neither
+[16:06] <Joakim_Nilsson> I will start work the week after, so I will not be able
+[16:06] <Hex-Henke> None in the project room has heard about the final presentation.
+[16:06] <Anne_> How come Ludwing knows about it? Mh, he is in his team so they may have talked about it in their milestone meeting!?
+[16:06] <Anne_> Mh, not good.
+[16:06] <AdrianaD_> i will be here at 8th
+[16:06] <Paul26_> Can we make it 1st?
+[16:06] <Anne_> What about the 1st of June?
+[16:06] <Hex-Henke> (I.e. David, Henke, Joakim, Paul.)
+[16:07] <Joakim_Nilsson> Yeah 1st of June is good
+[16:07] <AdrianaD_> because the trip is from 2nd of June until the 7th at nite
+[16:07] <DavidUlander> 1st works for me
+[16:07] <Joakim_Nilsson> Any time that week except for the 2nd works for me that week.
+[16:07] <AdrianaD_> 1st
+[16:07] <AdrianaD_> will be fit good i think
+[16:07] <Anne_> Ok. I will talk about this with Arnold and Ethiopia (the other teacher) as soon as possible.
+[16:08] <Joakim_Nilsson> Great
+[16:08] <Hex-Henke> So Wednesday 1st of June?
+[16:08] <Anne_> I have to talk with others first
+[16:08] <Anne_> Alright. Other questions from your side?
+[16:08] <Hex-Henke> I think 1st of June should work for me.
+[16:09] <Joakim_Nilsson> No I don't think so
+[16:09] <Anne_> Ok
+[16:09] <Joakim_Nilsson> But thank you very much!
+[16:09] <Web-Henke> Concerning Milestone Meeting 4, I have an exam on Weynesday 25 May, So I would very much prefer Friday 27th rather than Thursday 26th.
+[16:10] <Anne_> Then I let you go. I think, this was a well-prepared meeting again. Get your design specification ready by Wed night.
+[16:10] <DavidUlander> alright, thank you!
+[16:10] <Joakim_Nilsson> Thanks
+[16:10] <juho_> yhanks
+[16:10] <Hex-Henke> Yeah, Web-Henke, but you can cool that down. We have plenty of time to decide on that!
+[16:11] <AdrianaD_> thanks
+[16:11] <Hex-Henke> OK. Thanks!
+[16:11] <Anne_> I don't have anything else booked that day. If you come up with a suggestion soon, you are free to choose.
+[16:11] <Anne_> Alright, see you, good luck with your work.
+[16:12] <Joakim_Nilsson> Thank you, see you
+[16:12] <DavidUlander> thanks Anne!
+[16:13] <juho_> thanks, bye
+[16:13] <Anne_> No problem, bye!
+[16:14] == Anne_ [82ee0ef9@gateway/web/freenode/ip.130.238.14.249] has quit [Quit: Page closed]
+[16:14] == DavidUlander [~david@student246-10.eduroam.uu.se] has quit [Quit: Leaving]
+[16:15] == juho_ [~juho@37-33-27-81.bb.dnainternet.fi] has quit []
+[16:16] == AdrianaD_ [1fd07f64@gateway/web/freenode/ip.31.208.127.100] has quit [Quit: Page closed]
+[16:39] == Paul26_ [82f3b064@gateway/web/freenode/ip.130.243.176.100] has quit [Ping timeout: 250 seconds]
