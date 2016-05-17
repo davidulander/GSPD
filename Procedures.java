@@ -5,6 +5,9 @@ import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.utility.Delay;
 
+import java.util.Date;
+import java.util.Timer;
+
 public class Procedures {
 	private ColorMeasurement colorMeasure;
 	private DistanceSensor ultraSonic;
@@ -13,6 +16,7 @@ public class Procedures {
 	private ModeSensor modeScanner;
 	private int side = 0;
 	private boolean pickUp = false;
+	private int foo = 0;
 	
 	public Procedures() {
 		Brick ev3 = BrickFinder.getDefault();
@@ -21,12 +25,12 @@ public class Procedures {
 		colorMeasure = new ColorMeasurement(ev3);
 		ultraSonic = new DistanceSensor(ev3);
 		modeScanner = new ModeSensor(ev3);
-		Communication com = new Communication();
+		//Communication c = new Communication();
 		//initiate the display
 		//display = ev3.getGraphicsLCD();
 	}
 	public boolean PickUp() {
-		/*
+		
 		boolean isGreen = colorMeasure.ColorID(1);
 		if (isGreen && !pickUp) {
 			pickUp = !pickUp;
@@ -37,23 +41,28 @@ public class Procedures {
 		} else {
 			return pickUp;
 		}
-		*/
 		
-		
+		/*
 		boolean isGreen = colorMeasure.ColorID(1);
 		if (isGreen) {
 			return false;
 		} else {
 			return true;
 		}
-		
+		*/
 	}
 	
 	public void PickUpMode(int colorID) {
-		lineFollower.StopMotors();
+		//lineFollower.NormalSpeed();
+		// lägg till lineFollower.RestetParameters();
+		while (!PickUp()) {
+			lineFollower.PIDController();
+		}
+		//lineFollower.StopMotors();
 		side = 0;
 		//communication
 		lineFollower.PickUpSpeed();
+		
 		while (!colorMeasure.ColorID(colorID)) {
 			lineFollower.PIDController();
 		}
@@ -62,48 +71,62 @@ public class Procedures {
 		claw.CloseClaw();
 		Delay.msDelay(100);
 		lineFollower.Backward();
+		lineFollower.RestetParameters();
 		while (PickUp()) {
 			lineFollower.PIDController();
 		}
+		lineFollower.NormalSpeed();
 		//modeScanner.ResetStop();
 		//claw.OpenClaw();
 		//Delay.msDelay(2000);
 	}
 	
 	public void DriveMode0() {
-		lineFollower.NormalSpeed();
-		for (int i = 0; i < 1700; i++) {
+		lineFollower.RestetParameters();
+		lineFollower.PickUpSpeed();
+		float dist = modeScanner.ModeMeasurement();
+		
+		long startTime = System.currentTimeMillis();
+		long elapsedTime = 0L;
+
+		while (elapsedTime < 3*1000) {
 			lineFollower.PIDController();
+			dist = modeScanner.ModeMeasurement();
+			side++;
+		    elapsedTime = (new Date()).getTime() - startTime;
 		}
 	}
+	
 	public void DriveMode1() {
 		lineFollower.NormalSpeed();
+		lineFollower.RestetParameters();
 		float dist = modeScanner.ModeMeasurement();
-		while (!(dist<0.08f && dist>0.001f)) {
+		while (!(dist<0.05f && dist>0.001f)) {
 			lineFollower.PIDController();
 			dist = modeScanner.ModeMeasurement();
 			side++;
 		}
-		lineFollower.StopMotors();
-		//wait for communication
-		Delay.msDelay(2000);
 	}
 	
 	
 	public void StoreMode() {	
+		lineFollower.StopMotors(); //ny
 		lineFollower.LeftStore();
 		claw.OpenClaw();
 		lineFollower.TurnRight();
-	}
-	
-	/*
-	public void Position() {
-		side = 0;
-		if (ultraSonic.DistanceMeasurement() < 0.2f) {
+		lineFollower.RestetParameters();
+		
+		long startTime = System.currentTimeMillis();
+		long elapsedTime = 0L;
+
+		while (elapsedTime < 2*1000) {
+			lineFollower.PIDController();
+			//dist = modeScanner.ModeMeasurement();
 			side++;
+		    elapsedTime = (new Date()).getTime() - startTime;
 		}
 	}
-	*/
+
 
 	public void ClosePorts() {
 		lineFollower.ClosePorts();
@@ -117,24 +140,34 @@ public class Procedures {
 		Procedures p = new Procedures();
 		//while (!Button.ESCAPE.isDown()) {
 		
-		p.PickUpMode(0);
-		for (int i=0; i < 4; i++) {
+		
+		//
+		//p.DriveMode0();
+	
+		for (int i = 0; i < 8; i++) {
+			
+			if (i % 4 == 0) {
+				p.lineFollower.StopMotors();
+				p.PickUpMode(0);
+				//funkar
+			}
+			
 			p.DriveMode0();
 			p.DriveMode1();
 			
+			
+			if (i + 1 == 2 || i+1 == 8) {
+				p.lineFollower.StopMotors();
+				p.StoreMode();
+				//p.lineFollower.StopMotors(); || i+1 == 11 || i+1 == 16
+				// problems
+			//}
+			}
 		}
 		
-		p.StoreMode();
-		p.DriveMode0();
+		
 		p.ClosePorts();
 		 
-		/*
-		p.PickUpMode(3);
-		
-		p.DriveMode0();
-		p.StoreMode();
-		p.ClosePorts();
-		*/
 		/*
 		while (p.modeScanner.ModeMeasurement()<0.1f) {
 		 
@@ -149,7 +182,8 @@ public class Procedures {
 		
 		*/
 		//p.PickUpMode(2);
-				
+			
+	
 	}
 	
 }
