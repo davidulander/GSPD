@@ -1,0 +1,124 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.button {
+    -fx-padding: 5 22 5 22;   
+    -fx-border-color: #e2e2e2;
+    -fx-border-width: 2;
+ 
+    -fx-background-radius: 0;
+ 
+    -fx-background-color: #1d1d1d;
+   
+     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-text-fill: #d8d8d8;
+}
+ 
+.button:hover{
+    -fx-background-color: #8A2BE2;
+}
+ 
+.button:pressed, .button:default:hover:pressed
+{
+  -fx-background-color: white;
+  -fx-text-fill: #1d1d1d;
+}
+ 
+.button:focused
+{
+    -fx-border-color: white, white;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1, 1);
+    -fx-border-radius: 0, 0;
+    -fx-border-insets: 1 1 1 1, 0;
+}
+ 
+.button:disabled, .button:default:disabled
+{
+    -fx-opacity: 0.4;
+    -fx-background-color: #1d1d1d;
+    -fx-text-fill: white;
+}
+ 
+.button:default
+{
+    -fx-background-color: #008287;
+    -fx-text-fill: #ffffff;
+}
+ 
+.button:default:hover{
+    -fx-background-color: #8A2BE2;
+}
+
+.header{
+    -fx-font-size: 42pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+}
+ 
+.text-field:hover{
+    -fx-background-color: #8A2BE2;
+}
+
+.check-box:hover{
+    -fx-background-color: #8A2BE2;
+}
+
+.combo-box:hover{
+    -fx-background-color: #8A2BE2;
+}
+
+.check-box:default {
+    -fx-background-color: #8A2BE2;
+}
+
+.chart {
+    -fx-padding: 50px;
+    
+}
+.chart-content {
+    -fx-padding: 0px;    
+}
+ 
+.chart-title {
+  -fx-text-fill: white;
+  -fx-font-size: 32pt;
+}
+ 
+.axis-label {
+  -fx-text-fill: white;
+}
+ 
+.chart-legend {
+   -fx-background-color:  transparent;
+   
+}
+ 
+.chart-legend-item-symbol{
+   -fx-background-radius: 50;
+}
+ 
+.chart-legend-item{
+    -fx-text-fill: #191970;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.axis {
+    -fx-font-size: 1.4em;    
+    -fx-tick-label-fill: white;
+    
+    -fx-tick-length: 10;
+    -fx-minor-tick-length: 0;
+}
+
+.chart-symbol { /* solid circle */
+     /*-fx-background-color: #860061, white;*/
+    /*-fx-background-insets: 0, 2;*/
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+
+}
+

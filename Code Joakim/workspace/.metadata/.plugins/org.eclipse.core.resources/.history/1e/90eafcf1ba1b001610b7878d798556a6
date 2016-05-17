@@ -1,0 +1,35 @@
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import org.json.simple.parser.ParseException;
+
+public class Position {
+	private static ServerSocket incoming;
+	
+	String BCt = "/darkAndCold/temperature";
+	String DCt = "/darkAndCold/temperature";
+	String BWt = "/BrightAndWarm/temperature";
+	String DWt = "/darkAndWarm/temperature";
+	String BCb = "/darkAndCold/brightness";
+	String DCb = "/darkAndCold/brightness";
+	String BWb = "/BrightAndWarm/brightness";
+	String DWb = "/darkAndWarm/brightness";
+	
+	MqqtPub m = new MqqtPub();
+	
+	public static void main(String[] args) throws UnknownHostException, IOException, ParseException{
+		while(true){
+		incoming = new ServerSocket(1886);
+		Socket s = incoming.accept();
+		DataInputStream in = new DataInputStream(s.getInputStream());
+		String position = in.readUTF();
+		
+		if(position.equals("DW")){
+			m.publish(Integer.toString(red)+Integer.toString(green)+Integer.toString(yellow)+"0"+"0","/storage/boxPriority");
+		}
+		}
+	}
+}

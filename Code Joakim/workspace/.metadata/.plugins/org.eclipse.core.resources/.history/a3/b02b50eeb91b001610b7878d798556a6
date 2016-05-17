@@ -1,0 +1,19 @@
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import org.json.simple.parser.ParseException;
+
+public class Position {
+	private static ServerSocket incoming;
+	public static void main(String[] args) throws UnknownHostException, IOException, ParseException{
+		while(true){
+		incoming = new ServerSocket(1886);
+		Socket s = incoming.accept();
+		DataInputStream in = new DataInputStream(s.getInputStream());
+		String position = in.readUTF();
+		}
+	}
+}

@@ -1,0 +1,16 @@
+import java.io.IOException;
+import java.net.UnknownHostException;
+
+import lejos.hardware.lcd.GraphicsLCD;
+import lejos.utility.Delay;
+
+public class Test {
+	public static void main(String[] args) throws UnknownHostException, IOException {
+		GraphicsLCD display = null;
+		Communication c = new Communication();
+		System.out.println(c.getBox());
+		display.drawString("The number is: " + c.getBox(), 0, 40, GraphicsLCD.VCENTER | GraphicsLCD.LEFT);
+	    Delay.msDelay(5000);
+	    display.clear();
+	}
+}

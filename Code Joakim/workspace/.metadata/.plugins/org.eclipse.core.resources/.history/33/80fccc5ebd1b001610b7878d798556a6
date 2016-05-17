@@ -1,0 +1,7 @@
+
+public class TestPosition {
+	public static void main(String[] args){
+		Communication c = new Communication();
+		
+	}
+}
