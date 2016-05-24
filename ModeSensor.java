@@ -38,6 +38,13 @@ public class ModeSensor {
 		//}	
 		return sample[0];
 	}
+	public void Enable(){
+		modeSonic.enable();
+	}
+	
+	public void Disable(){
+		modeSonic.disable();
+	}
 	
 	public int GetStop() {
 		return stops;

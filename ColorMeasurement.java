@@ -52,9 +52,13 @@ public class ColorMeasurement {
 	/*
 	public static void main(String[] args) {
 	ColorMeasurement ds = new ColorMeasurement(BrickFinder.getDefault());
-	while(!ds.ColorID(8))
-	{}
-	ds.ClosePorts();
+	
+	while(!Button.ESCAPE.isDown()) 
+	{
+		 ds.ColorID(3);	
 	}
+	ds.ClosePorts();
 	*/
+	
+
 }

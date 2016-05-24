@@ -10,7 +10,7 @@ import java.util.Timer;
 
 public class Procedures {
 	private ColorMeasurement colorMeasure;
-	private DistanceSensor ultraSonic;
+	//private DistanceSensor ultraSonic;
 	private Claw claw;
 	private LineFollower lineFollower;
 	private ModeSensor modeScanner;
@@ -23,7 +23,7 @@ public class Procedures {
 		lineFollower = new LineFollower(ev3);
 		claw = new Claw(ev3);
 		colorMeasure = new ColorMeasurement(ev3);
-		ultraSonic = new DistanceSensor(ev3);
+		//ultraSonic = new DistanceSensor(ev3);
 		modeScanner = new ModeSensor(ev3);
 		//Communication c = new Communication();
 		//initiate the display
@@ -83,7 +83,7 @@ public class Procedures {
 	
 	public void DriveMode0() {
 		lineFollower.RestetParameters();
-		lineFollower.PickUpSpeed();
+		lineFollower.NormalSpeed();
 		float dist = modeScanner.ModeMeasurement();
 		
 		long startTime = System.currentTimeMillis();
@@ -95,6 +95,7 @@ public class Procedures {
 			side++;
 		    elapsedTime = (new Date()).getTime() - startTime;
 		}
+		modeScanner.Enable();
 	}
 	
 	public void DriveMode1() {
@@ -106,6 +107,7 @@ public class Procedures {
 			dist = modeScanner.ModeMeasurement();
 			side++;
 		}
+		modeScanner.Disable();
 	}
 	
 	
@@ -132,7 +134,7 @@ public class Procedures {
 		lineFollower.ClosePorts();
 		claw.ClosePorts();
 		colorMeasure.ClosePorts();
-		ultraSonic.ClosePorts();
+		//ultraSonic.ClosePorts();
 		modeScanner.ClosePorts();
 	}
 	
@@ -147,13 +149,14 @@ public class Procedures {
 		for (int i = 0; i < 8; i++) {
 			
 			if (i % 4 == 0) {
-				p.lineFollower.StopMotors();
+				//p.lineFollower.StopMotors();
+				//error
 				p.PickUpMode(0);
-				//funkar
 			}
 			
 			p.DriveMode0();
 			p.DriveMode1();
+			
 			
 			
 			if (i + 1 == 2 || i+1 == 8) {

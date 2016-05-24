@@ -41,6 +41,8 @@ public class LineFollower {
 		display = ev3.getGraphicsLCD();
 	}
 	
+
+	
 	public float LineMeasurement() {
 		
 		SampleProvider blackLineSensor = lineSensor.getAmbientMode();
@@ -92,8 +94,8 @@ public class LineFollower {
 			integral = (0.5f)*integral + error;
 			derivative = error - lastError;
 			float turn = Kp*error + Ki*integral + Kd*derivative;
-			float powerB = tp + turn;
-			float powerC = tp - turn;
+			float powerB = tp + 0.8f*turn;
+			float powerC = tp - 0.8f*turn;
 			
 			motorB.setSpeed(powerB);
 			motorC.setSpeed(powerC);
